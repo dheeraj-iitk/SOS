@@ -1,0 +1,26 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+	<form action="/new" method="GET">
+		<button class="btn btn-primary pull-right">
+			Create new post
+		</button>
+	</form>
+
+	<div>
+		<% for(var i=0; i<blogs.length; i++) { %>	
+			<div>
+				<h1>
+					<%= blogs[i].title %>
+				</h1>
+				<p>
+					<%= blogs[i].content.substr(0, 300) %> ...
+					<a href="/<%= blogs[i]._id %>">Read more</a>
+				</p>
+				<%= blogs[i].created.toDateString() %>
+			</div>
+		<% } %>
+	</div>
+</div>
+
+<%- include("../partials/footer") %>

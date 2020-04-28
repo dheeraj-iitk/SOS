@@ -1,0 +1,52 @@
+<%- include("../partials/header") %>
+
+<div class="container">	
+	<div>
+		<h1>
+			<%= blog.title %>
+		</h1>
+		<p>
+			<%= blog.content %>
+		</p>
+		<%= blog.created.toDateString() %>
+	</div>
+	<a class="btn btn-success" href="/<%= blog._id %>/edit">Edit</a>
+	<form class="removeBtn" action="/<%= blog._id %>?_method=DELETE" method="POST">
+		<button class="btn btn-danger pull-right">
+			Remove
+		</button>
+	</form>
+	
+	<div class="well">
+		<div>
+			<form action="/<%= blog._id %>/comments" method="POST">
+			<div class="form-group">
+				<input class="form-control" type="text" name="comment[username]" placeholder="username">
+			</div>
+			
+			<div class="form-group">
+				<textarea class="form-control" name="comment[content]" placeholder="Comment"></textarea>
+			</div>
+				
+			<div class="form-group">
+				<button class="btn btn-info pull-right">
+					Create
+				</button>
+			</div>
+			</form>	
+		</div>
+		
+	
+		<% for(var i=0; i<blog.comments.length; i++) { %>
+			<p>
+				<strong><%= blog.comments[i].username %></strong>
+			</p>
+			<p>
+				<%= blog.comments[i].content %>
+			</p>
+			<hr>
+		<% } %>
+	</div>
+</div>
+
+<%- include("../partials/footer") %>
