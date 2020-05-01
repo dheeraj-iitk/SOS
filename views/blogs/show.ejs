@@ -1,0 +1,73 @@
+
+
+<%- include("../partials/header") %>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<div class="w3-col l8 s12">
+	<div class="w3-card-4 w3-margin w3-white">
+	 <!-- <img src="/w3images/woods.jpg" alt="Nature" style="width:100%"> -->
+	  <div class="w3-container">
+		<h3><b><%= blog.title %></b></h3>
+		<h5> <span class="w3-opacity"><%= blog.created.toDateString() %></span></h5>
+	  </div>
+  
+	  <div class="w3-container">
+		<p><%= blog.content %></p>
+		  </div>
+		
+	
+	<a class="w3-button w3-padding-large w3-white " href="/<%= blog._id %>/edit"><b>Edit</b></a>
+	<form class="removeBtn" action="/<%= blog._id %>?_method=DELETE" method="POST">
+		<button class="btn btn-danger pull-right">
+			Remove
+		</button>
+	</form>
+	
+	<div class="well">
+		<div>
+			<form action="/<%= blog._id %>/comments" method="POST">
+			
+			<div class="form-group">
+				<textarea class="form-control" name="comment[content]" placeholder="Comment"></textarea>
+			</div>
+				
+			<div class="form-group">
+				<button class="btn btn-info pull-right">
+					Create
+				</button>
+			</div>
+			</form>	
+		</div>
+		<hr>
+	
+		<% for(var i=0; i<blog.comments.length; i++) { %>
+			<p>
+				<strong><%= blog.comments[i].author.username %></strong>
+			</p>
+			<p>
+				<%= blog.comments[i].content %>
+			</p>
+			<hr>
+		<% } %>
+	</div>
+</div>
+</div>
+<% var length = allblog.length %>
+<div class="w3-col l4">
+<div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Recent Posts</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+	<% for(var i=0; i<4; i++) { %>
+        <li class="w3-padding-16">
+             <span class="w3-large"><%= allblog[length-i].title %></span><br>
+             <span><%= allblog[length-i].content.substr(0, 20) %> ...
+			 <a href="/blogs/<%= allblog[length-i]._id %>">Read more</a></span>
+        </li>
+      <% } %> 
+    </ul>
+  </div>
+  <hr> 
+<%- include("../partials/footer") %>

@@ -1,0 +1,89 @@
+.formContainer{
+	width: 500px;
+}
+
+.removeBtn {
+	display: inline;
+	color: blue;
+}
+
+.navbar-default {
+	background: #bb0e23;
+	height: 90px;
+	padding-top: 20px;
+	margin: 0px;
+	border: 0;
+}
+.link{
+	font-weight: bold;
+}
+
+.logo{
+	height: 50px;
+	width: 50px;
+	
+}
+
+#indexImg{
+	margin: 0px;
+	width: 100%;
+	height: 600px;
+}
+
+.jumbotron{
+	background-image: url("https://i.pinimg.com/originals/4a/21/57/4a2157de89538ac6443385b8fc26ad75.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: white;
+	margin: 0px;
+	height: 500px;
+	margin-bottom: 10px; 
+}
+
+#jumbotronContent {
+	margin-left: 200px;
+	width: 30%;
+}
+
+.jumbotron p {
+	font-size: 15px;
+}
+
+.jumbotron h1 {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+#createPostBtn {
+	display: inline;
+}
+
+.thumbnail {
+	padding: 0;
+}
+
+body {
+	background: rgb(250, 248, 240);
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: white;
+}
+
+.navbar-default .navbar-brand  {
+	color: white;
+	font-weight: bold;
+	font-size: 22px;
+}
+
+.caption-full{
+	padding:9px;
+}
+
+#title {
+	font-size: 30px;
+}
+
+#titleHead {
+	margin: 10px;
+}
