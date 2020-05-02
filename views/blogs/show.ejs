@@ -7,6 +7,7 @@
 <div class="w3-col l8 s12">
 	<div class="w3-card-4 w3-margin w3-white">
 	 <!-- <img src="/w3images/woods.jpg" alt="Nature" style="width:100%"> -->
+	 <img src="<%= blog.image %>">
 	  <div class="w3-container">
 		<h3><b><%= blog.title %></b></h3>
 		<h5> <span class="w3-opacity"><%= blog.created.toDateString() %></span></h5>
@@ -17,16 +18,16 @@
 		  </div>
 		
 	
-	<a class="w3-button w3-padding-large w3-white " href="/<%= blog._id %>/edit"><b>Edit</b></a>
-	<form class="removeBtn" action="/<%= blog._id %>?_method=DELETE" method="POST">
-		<button class="btn btn-danger pull-right">
-			Remove
+	<a class="w3-button w3-padding-large w3-white " href="/blogs/<%= blog._id %>/edit"><b>Edit</b></a>
+	<form class="removeBtn" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+		<button class="w3-button w3-padding-large w3-white pull-right">
+			<b>Remove</b>
 		</button>
 	</form>
 	
 	<div class="well">
 		<div>
-			<form action="/<%= blog._id %>/comments" method="POST">
+			<form action="/blogs/<%= blog._id %>/comments" method="POST">
 			
 			<div class="form-group">
 				<textarea class="form-control" name="comment[content]" placeholder="Comment"></textarea>
@@ -53,20 +54,34 @@
 	</div>
 </div>
 </div>
-<% var length = allblog.length %>
+<% length=allblog.length %>
 <div class="w3-col l4">
 <div class="w3-card w3-margin">
     <div class="w3-container w3-padding">
       <h4>Recent Posts</h4>
     </div>
     <ul class="w3-ul w3-hoverable w3-white">
-	<% for(var i=0; i<4; i++) { %>
-        <li class="w3-padding-16">
-             <span class="w3-large"><%= allblog[length-i].title %></span><br>
-             <span><%= allblog[length-i].content.substr(0, 20) %> ...
-			 <a href="/blogs/<%= allblog[length-i]._id %>">Read more</a></span>
-        </li>
-      <% } %> 
+      <li class="w3-padding-16">
+		<img src="<%= allblog[length-1].image %>" alt="Image" class="w3-left w3-margin-right" style="width:40px">
+        <span class="w3-large"><%= allblog[length-1].title %></span><br>
+        <span><%= allblog[length-1].content.substr(0, 20) %> ...
+			<a href="/blogs/<%= allblog[length-1]._id %>">Read more</a></span>
+      </li>
+      <li class="w3-padding-16">
+        <span class="w3-large"><%= allblog[length-2].title %></span><br>
+        <span><%= allblog[length-2].content.substr(0, 20) %> ...
+			<a href="/blogs/<%= allblog[length-2]._id %>">Read more</a></span>
+      </li> 
+      <li class="w3-padding-16">
+        <span class="w3-large"><%= allblog[length-3].title %></span><br>
+        <span><%= allblog[length-3].content.substr(0, 20) %> ...
+			<a href="/blogs/<%= allblog[length-3]._id %>">Read more</a></span>
+      </li>   
+      <li class="w3-padding-16 w3-hide-medium w3-hide-small">
+        <span class="w3-large"><%= allblog[length-4].title %></span><br>
+        <span><%= allblog[length-4].content.substr(0, 20) %> ...
+			<a href="/blogs/<%= allblog[length-4]._id %>">Read more</a></span>
+      </li>  
     </ul>
   </div>
   <hr> 
