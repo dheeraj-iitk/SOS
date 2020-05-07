@@ -1,0 +1,96 @@
+<%- include("../partials/header") %>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<div class="w3-col l8 s12">
+	<div class="w3-card-4 w3-margin w3-white">
+		 <img src="<%= blog.image %>" alt="Nature" style="width:100%">
+		 <!-- <img src="/w3images/woods.jpg" alt="Nature" style="width:100%"> -->
+		 <!-- <img src="<%= blog.image %>"> -->
+		 <div class="w3-container">
+			<h3><b><%= blog.title %></b></h3>
+			<h5> <span class="w3-opacity"><%= blog.created.toDateString() %></span></h5>
+		 </div>
+  
+		<div class="w3-container">
+			<p><%= blog.content %></p>
+		</div>
+		
+	
+	<form class="removeBtn" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+		
+	<a class="w3-button w3-padding-large w3-white " href="/blogs/<%= blog._id %>/edit"><b>Edit</b></a>
+	<form class="removeBtn" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+		<button class="w3-button w3-padding-large w3-white pull-right">
+			<b>Remove</b>
+		</button>
+	</form>
+	
+	<div class="well">
+		<div>
+			<form action="/blogs/<%= blog._id %>/comments" method="POST">
+				<div class="form-group">
+					<textarea class="form-control" name="comment[content]" placeholder="Comment"></textarea>
+				</div>
+
+				<div class="form-group">
+					<button class="btn btn-info pull-right">
+						Create
+					</button>
+				</div>
+			</form>	
+		</div>
+		<hr>
+	
+		<% for(var i=0; i<blog.comments.length; i++) { %>
+			<p>
+				<strong><%= blog.comments[i].author.username %></strong>
+			</p>
+			<p>
+				<%= blog.comments[i].content %>
+			</p>
+			<hr>
+		<% } %>
+	</div>
+</div>
+
+</div>
+<% length=allblog.length %>
+<div class="w3-col l4">
+<div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Recent Posts</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+    	  
+			<li class="w3-padding-16">
+				<img src="<%= allblog[length-1].image %>" alt="Image" class="w3-left w3-margin-right" style="width:40px">
+				<span class="w3-large"><%= allblog[length-1].title %></span><br>
+				<span><%= allblog[length-1].content.substr(0, 20) %> ...
+					<a href="/blogs/<%= allblog[length-1]._id %>">Read more</a></span>
+			</li>
+		<% if (length>1) { %>
+			 <li class="w3-padding-16">
+				<span class="w3-large"><%= allblog[length-2].title %></span><br>
+				<span><%= allblog[length-2].content.substr(0, 20) %> ...
+					<a href="/blogs/<%= allblog[length-2]._id %>">Read more</a></span>
+			</li> 
+		<% } %>
+		<% if (length>2) { %>
+			<li class="w3-padding-16">
+				<span class="w3-large"><%= allblog[length-3].title %></span><br>
+				<span><%= allblog[length-3].content.substr(0, 20) %> ...
+					<a href="/blogs/<%= allblog[length-3]._id %>">Read more</a></span>
+			</li>
+		<% } %>
+		<% if (length>1) { %>
+			<li class="w3-padding-16 w3-hide-medium w3-hide-small">
+				<span class="w3-large"><%= allblog[length-4].title %></span><br>
+				<span><%= allblog[length-4].content.substr(0, 20) %> ...
+					<a href="/blogs/<%= allblog[length-4]._id %>">Read more</a></span>
+			</li>  
+		<% } %>
+    </ul>
+  </div>
+  <hr> 
+<%- include("../partials/footer") %>
