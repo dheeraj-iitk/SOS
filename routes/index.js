@@ -40,10 +40,17 @@ router.post("/verify_email",function(req,res){
 							res.redirect("/verify_email");
 						}
 						else{
+							if(req.body.email.includes("@iitk.ac.in")){
 							console.log("email.sent");
 							req.flash("success", "Check your Email" )
 							res.redirect("/verify_email");
 							userEmail=req.body.email;
+							}
+							else{
+								console.log("not a iitk email");
+								req.flash("error","Please Enter Your iitk email");
+								res.redirect("/verify_email");
+							}
 						}
 					})
 				}
@@ -83,6 +90,7 @@ router.get('/verify',function(req,res){
 	}
 	});
 
+	
 router.post("/register", function(req, res){
 	newUser = new User({email:veruserEmail,username: req.body.username, passcode: req.body.passcode});
 	User.register(newUser, req.body.password, function(err, newUser){
@@ -104,17 +112,17 @@ router.get("/login", function(req, res){
 	res.render("auth/login");
 })
 router.post("/login", passport.authenticate("local", {
-	successRedirect: "/",
-	failureRedirect: "/login"
+	successRedirect: "/blogs",successFlash:"You are logged in",
+	failureRedirect: "/login",failureFlash: true 
 }),function(req, res){
-	
+	req.flash("success","You are logged in");
 })
 
 // LOGOUT ROUTE
 router.get("/logout", function(req, res){
 	req.logout();
 	req.flash("success", "Logged You Out")
-	res.redirect("/");
+	res.redirect("/blogs");
 })
 
 module.exports = router;

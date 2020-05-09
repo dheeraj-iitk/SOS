@@ -1,0 +1,50 @@
+<%- include("../partials/header") %>
+
+<div class="jumbotron">
+	<div id="jumbotronContent">
+		<h1>
+			Students and opinions made for each other
+		</h1>
+		<p>
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+		</p>
+	</div>
+</div>
+
+<div class="container">
+	
+	<h1 id="titleHead">
+		<span id="title">Trending</span>
+		<% if (currentUser && (user.passcode == passVal)) { %>
+			<form id="createPostBtn" action="/blogs/new" method="GET">
+				<button class="btn btn-primary pull-right">
+					<i class="fas fa-plus"></i>
+					Create new post
+				</button>
+			</form>
+		<% } %>
+	</h1>
+
+	<div class="row">
+		<% for(var i=0; i<blogs.length; i++) { %>	
+			<div class="clearfix col-md-4 float">
+				<div class="thumbnail">
+					<img src="<%= blogs[i].image %>">
+					<div class="caption-full">
+						<h1>
+							<%= blogs[i].title %>
+						</h1>
+						<p>
+							<%= blogs[i].content.substr(0, 100) %> ...
+							<a href="/blogs/<%= blogs[i]._id %>">Read more</a>
+						</p>
+						<%= blogs[i].created.toDateString() %>
+					</div>	
+						
+				</div>
+			</div>
+		<% } %>
+	</div>
+</div>
+
+<%- include("../partials/footer") %>

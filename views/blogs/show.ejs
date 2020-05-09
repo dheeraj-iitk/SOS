@@ -1,96 +1,228 @@
-<%- include("../partials/header") %>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>SOS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<div class="w3-col l8 s12">
-	<div class="w3-card-4 w3-margin w3-white">
-		 <img src="<%= blog.image %>" alt="Nature" style="width:100%">
-		 <!-- <img src="/w3images/woods.jpg" alt="Nature" style="width:100%"> -->
-		 <!-- <img src="<%= blog.image %>"> -->
-		 <div class="w3-container">
-			<h3><b><%= blog.title %></b></h3>
-			<h5> <span class="w3-opacity"><%= blog.created.toDateString() %></span></h5>
-		 </div>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300, 400,700|Inconsolata:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="/fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="/css/style.css">
+    <nav class="navbar navbar-expand-md  navbar-light bg-light" >
+        <div class="container">
+          
+         
+          <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav mx-auto" >
+              <li class="nav-item">
+                <a class="nav-link " href="/"> HOME</h3></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/blogs"><b>BLOGS</b></a>
+              </li>
+              <%	if(currentUser) { %>
+                       <li class="nav-item"><a class="nav-link" href="#"><%= currentUser.username %></h3></a></li>
+                       <li class="nav-item"><a class="nav-link" href="/logout">LOGOUT</h3></a></li>
+             <%  } else { %>
+                     <li class="nav-item"><a class="nav-link" href="/verify_email">SIGNUP</h4></a></li>
+                     <li class="nav-item"><a class="nav-link" href="/login">LOGIN</h4></a></li>
+              <% } %>
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+      <div class="container">	
+        <% if(success && success.length > 0) { %>
+          <div class="alert alert-success" role="alert">
+            <%= success %>
+          </div>
+        <% } else if(error && error.length > 0) { %>
+          <div class="alert alert-danger" role="alert">
+            <%= error %>
+          </div>
+        <% } %>
+      </div>
+  </head>
+  <body>
+    
+
+    <div class="wrap">
+
+      <header role="banner">
+
+        <div class="container logo-wrap">
+          <div class="row pt-5">
+            <div class="col-12 text-center">
+              <a class="absolute-toggle d-block d-md-none" data-toggle="collapse" href="#navbarMenu" role="button" aria-expanded="false" aria-controls="navbarMenu"><span class="burger-lines"></span></a>
+              <h1 class="site-logo"><a href="./blog.html">Writter</a></h1>
+            </div>
+          </div>
+        </div>
+        
+       
+      </header>
+      <!-- END header -->
+
+    <section class="site-section py-lg">
+      <div class="container">
+        
+        <div class="row blog-entries element-animate">
+
+          <div class="col-md-12 col-lg-8 main-content">
+            <img src="<%=blog.image %>" alt="Image" class="img-fluid mb-5" style="width:80%">
+             <div class="post-meta">
+                        <span class="author mr-2"> Abhishek Singh</span>&bullet;
+                        <span class="mr-2"><%= blog.created.toDateString() %> </span>
+                      </div>
+                      <form class="removeBtn" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-round color-1 material-design" data-color="#ffffff" style=" background-color:#426FC5;">Edit</button>
+                       <!-- <a class="w3-button w3-padding-large w3-white " href="/blogs/<%= blog._id %>/edit"><b>Edit</b></a> -->
+                        <form class="removeBtn" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-round color-1 material-design  pull-right" style=" background-color:#e94043;">
+                                <b>Remove</b>
+                            </button>
+                        </form>
+            <h1 class="mb-4"><%= blog.title %></h1>
+            
+           
+            <div class="post-content-body">
+            <div class="row mb-5">
+              <div class="col-md-12 mb-4">
+              <!--  <img src="images/blog1_2.jpg" alt="Image placeholder" class="img-fluid"> -->
+              </div>
+            </div>
+          <%=  blog.content %>
+
+            </div>
+          </div>
+        
+          <!-- END main-content -->
+        
+          <div class="col-md-12 col-lg-4 sidebar">
+            <div class="sidebar-box">
+              <div class="bio text-center">
+                <img src="images/blog1_0.jpg" alt="Image Placeholder" class="img-fluid">
+                <div class="bio-body">
+                  <h2>Abhishek Singh</h2>
+                  <p>Final Year Undergraduate at the Indian Institute of Technology Kanpur aiming for a career in the Social Development Sector to create an impact at scale. </p>
+                  <p class="social">
+                    <a href="https://www.facebook.com/abhishek.allenstudent?epa=SEARCH_BOX" class="p-2"><span class="fa fa-facebook"></span></a>
+                    <a href="https://www.linkedin.com/in/abhishek-singh-976b47141?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B1SeTEFDtSpSxgI1BgTk4Mg%3D%3D" class="p-2"><span class="fa fa-linkedin"></span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+    <!-- END section -->
   
-		<div class="w3-container">
-			<p><%= blog.content %></p>
-		</div>
-		
-	
-	<form class="removeBtn" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
-		
-	<a class="w3-button w3-padding-large w3-white " href="/blogs/<%= blog._id %>/edit"><b>Edit</b></a>
-	<form class="removeBtn" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
-		<button class="w3-button w3-padding-large w3-white pull-right">
-			<b>Remove</b>
-		</button>
-	</form>
-	
-	<div class="well">
-		<div>
-			<form action="/blogs/<%= blog._id %>/comments" method="POST">
-				<div class="form-group">
-					<textarea class="form-control" name="comment[content]" placeholder="Comment"></textarea>
-				</div>
+    <footer class="site-footer">
+        <div class="container">
+          <div class="row mb-5">
+            <div class="col-md-4">
+              <h3>About Us</h3><!--
+              <p class="mb-4">
+                <img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid">
+              </p>-->
 
-				<div class="form-group">
-					<button class="btn btn-info pull-right">
-						Create
-					</button>
-				</div>
-			</form>	
-		</div>
-		<hr>
-	
-		<% for(var i=0; i<blog.comments.length; i++) { %>
-			<p>
-				<strong><%= blog.comments[i].author.username %></strong>
-			</p>
-			<p>
-				<%= blog.comments[i].content %>
-			</p>
-			<hr>
-		<% } %>
-	</div>
-</div>
+              <p><a>WRITTER</a>, the initiative by Students' Opinion Society to explore career alternatives 
+              in the field of public policy, policy reasearch and other realted fields. </p>
+            </div>
+                      
+            <div class="col-md-6 ml-auto">
+              <div class="row">
+                <div class="col-md-7">
+                  <h3>Latest Post</h3>
+                  <div class="post-entry-sidebar">
+                    <ul>
+                      <li>
+                        <a href="/blogs/<%= allblog[allblog.length-1]._id %>">
+                          <img src="<%= allblog[allblog.length-1].image %>" alt="Image placeholder" class="mr-4">
+                          <div class="text">
+                          
+                            <h4><%= allblog[allblog.length-1].title %></h4>
+                            <div class="post-meta">
+                              <span class="mr-2"><%= allblog[allblog.length-1].created.toDateString() %> </span> &bullet;
+                              <!--<span class="ml-2"><span class="fa fa-comments"></span> 3</span>-->
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/blogs/<%= allblog[allblog.length-2]._id %>">
+                          <img src="<%= allblog[allblog.length-2].image %>" alt="Image placeholder" class="mr-4">
+                          <div class="text">
+                            <h4><%= allblog[allblog.length-2].title %></h4>
+                            <div class="post-meta">
+                              <span class="mr-2"><%= allblog[allblog.length-2].created.toDateString() %> </span> &bullet;
+                              <!--<span class="ml-2"><span class="fa fa-comments"></span> 3</span>-->
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-1"></div>
+                
+                <div class="col-md-4">
 
+                  <div class="mb-5">
+                    <h3>Quick Links</h3>
+                    <ul class="list-unstyled">
+                      <li><a href="/">About Us</a></li>
+                      <li><a href="/contacts">Contact Us</a></li>
+                    </ul>
+                  </div>
+                  
+                  <div class="mb-5">
+                    <h3>Social</h3>
+                    <ul class="list-unstyled footer-social">
+                      <li><a href="https://fb.com/sos.iitk"><span class="fa fa-facebook"></span> Facebook</a></li>
+                      <li><a href="https://www.linkedin.com/company/30244102"><span class="fa fa-youtube-play"></span> Youtube</a></li>
+                      <li><a href="https://www.youtube.com/channel/UCL6N8QXTgLIdj2SzxYhHrag/featured"><span class="fa fa-linkedin"></span> Linkedin</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <p class="small">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy; Students' Opinion Society
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    <!-- END footer -->
 </div>
-<% length=allblog.length %>
-<div class="w3-col l4">
-<div class="w3-card w3-margin">
-    <div class="w3-container w3-padding">
-      <h4>Recent Posts</h4>
-    </div>
-    <ul class="w3-ul w3-hoverable w3-white">
-    	  
-			<li class="w3-padding-16">
-				<img src="<%= allblog[length-1].image %>" alt="Image" class="w3-left w3-margin-right" style="width:40px">
-				<span class="w3-large"><%= allblog[length-1].title %></span><br>
-				<span><%= allblog[length-1].content.substr(0, 20) %> ...
-					<a href="/blogs/<%= allblog[length-1]._id %>">Read more</a></span>
-			</li>
-		<% if (length>1) { %>
-			 <li class="w3-padding-16">
-				<span class="w3-large"><%= allblog[length-2].title %></span><br>
-				<span><%= allblog[length-2].content.substr(0, 20) %> ...
-					<a href="/blogs/<%= allblog[length-2]._id %>">Read more</a></span>
-			</li> 
-		<% } %>
-		<% if (length>2) { %>
-			<li class="w3-padding-16">
-				<span class="w3-large"><%= allblog[length-3].title %></span><br>
-				<span><%= allblog[length-3].content.substr(0, 20) %> ...
-					<a href="/blogs/<%= allblog[length-3]._id %>">Read more</a></span>
-			</li>
-		<% } %>
-		<% if (length>1) { %>
-			<li class="w3-padding-16 w3-hide-medium w3-hide-small">
-				<span class="w3-large"><%= allblog[length-4].title %></span><br>
-				<span><%= allblog[length-4].content.substr(0, 20) %> ...
-					<a href="/blogs/<%= allblog[length-4]._id %>">Read more</a></span>
-			</li>  
-		<% } %>
-    </ul>
-  </div>
-  <hr> 
-<%- include("../partials/footer") %>
+    
+    <!-- loader -->
+    <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
+
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/jquery-migrate-3.0.0.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jquery.waypoints.min.js"></script>
+    <script src="/js/jquery.stellar.min.js"></script>
+
+    
+    <script src="/js/main.js"></script>
+  </body>
+</html>

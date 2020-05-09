@@ -1,0 +1,214 @@
+<html>
+<title>SOS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300, 400,700|Inconsolata:400,700" rel="stylesheet">
+
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+
+<link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+<!-- Theme Style -->
+<link rel="stylesheet" href="css/style.css">
+
+
+<nav class="navbar navbar-expand-md  navbar-light bg-light" >
+  <div class="container">
+    
+   
+    <div class="collapse navbar-collapse" id="navbarMenu">
+      <ul class="navbar-nav mx-auto" >
+        <li class="nav-item">
+          <a class="nav-link " href="/"> HOME</h3></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/blogs"><b>BLOGS</b></a>
+        </li>
+        <%	if(currentUser) { %>
+                 <li class="nav-item"><a class="nav-link" href="#"><%= currentUser.username %></h3></a></li>
+                 <li class="nav-item"><a class="nav-link" href="/logout">LOGOUT</h3></a></li>
+       <%  } else { %>
+               <li class="nav-item"><a class="nav-link" href="/verify_email">SIGNUP</h4></a></li>
+               <li class="nav-item"><a class="nav-link" href="/login">LOGIN</h4></a></li>
+        <% } %>
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+<div class="container">	
+    <% if(success && success.length > 0) { %>
+        <div class="alert alert-success" role="alert">
+            <%= success %>
+        </div>
+    <% } else if(error && error.length > 0) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= error %>
+        </div>
+    <% } %>
+</div>
+<!-- Team Container -->
+<div class="w3-container w3-padding-64 w3-center" id="team">
+    <h2>OUR COORDINATORS</h2>
+    <p>Meet the team - our office rats:</p>
+    
+    <div class="w3-row"><br>
+    
+    <div class="w3-quarter">
+      <img src="https://scontent.fluh2-1.fna.fbcdn.net/v/t1.15752-9/95733813_656880381831902_4646046869191917568_n.jpg?_nc_cat=103&_nc_sid=b96e70&_nc_oc=AQnIEu8Tw_VdV3SoY7UAWo1bdTqQbkY62Nq4Q5LHu3aihn6QO36QqgYvDddPr6Hmu1PQiSH_PtvBKKkOic3RR2-m&_nc_ht=scontent.fluh2-1.fna&oh=c792a7db7ed4b4b5baf0162e8eaeacc0&oe=5EDC68EC" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+      <h3>Aditya</h3>
+      <p>+91-9794505227</p>
+    </div>
+    
+    <div class="w3-quarter">
+      <img src="https://scontent.fluh2-1.fna.fbcdn.net/v/t1.15752-9/96025394_3923043044404991_5507252189304717312_n.jpg?_nc_cat=104&_nc_sid=b96e70&_nc_oc=AQkNqOE795ZJZbrddmabONUjfhP7c9aMQ2wrixlIDAsLbnHvwj9n74xipzqOnBuXY4R-MZtm0Lr6-jLhih-3Oq4N&_nc_ht=scontent.fluh2-1.fna&oh=55b28f212304d7411faa2dbc9d2c40f3&oe=5EDBA21B" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+      <h3>Akash</h3>
+      <p> +91-9046001842</p>
+    </div>
+    
+    <div class="w3-quarter">
+      <img src="https://scontent.fluh2-1.fna.fbcdn.net/v/t1.15752-9/95831438_578430242796029_1324264092394848256_n.jpg?_nc_cat=105&_nc_sid=b96e70&_nc_oc=AQkDnafDjV9FNXs-49X5hcE5k-z8RuH9b7AR7UG6nfbj00ZZvPUowxn2bdutZRF9YDbRfBwaxodgCXwSzwgrVf0N&_nc_ht=scontent.fluh2-1.fna&oh=dc2e517f129ffc0aef42360494129445&oe=5ED94EF9" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+      <h3>Mukulesh</h3>
+      <p>+91-9602991604</p>
+    </div>
+    
+    <div class="w3-quarter">
+      <img src="https://scontent.fpat3-1.fna.fbcdn.net/v/t1.0-1/c0.6.160.160a/p160x160/78549601_445596299705397_4569104510064001024_o.jpg?_nc_cat=103&_nc_sid=dbb9e7&_nc_oc=AQmuKEFl0M1k-6PNPPSegohaYZGvESEd6Eh4R7hLZSNSzKv6dT8iWl-RuDx7Km7zsrqB9D_3bACeKzxIGS5ov4Sl&_nc_ht=scontent.fpat3-1.fna&oh=4e5e1d76b07ad964957bf3c00f349c0b&oe=5ED9C61A" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+      <h3>Prateek</h3>
+      <p>+91-6388501911</p>
+    </div>
+    
+    </div>
+    </div>
+
+    <!-- Contact Container -->
+<div class="w3-container w3-padding-64 w3-theme-l5" id="contact">
+    <div class="w3-row">
+      <div class="w3-col m5">
+      <div class="w3-padding-16"><span class="w3-xlarge w3-border-teal w3-bottombar">Contact Us</span></div>
+        <h3>Address</h3>
+        <p><i class="fa fa-map-marker w3-text-teal w3-xlarge"></i>New SAC, IIT Kanpur<br>
+            Kalyanpur<br>
+            Kanpur.
+			   </p>
+        <p><i class="fa fa-envelope-o w3-text-teal w3-xlarge"></i> sos.iitk@gmail.com</p>
+      </div>
+      <div class="w3-col m7">
+        <form class="w3-container w3-card-4 w3-padding-16 w3-white" action="/contacts" method="POST">
+        <div class="w3-section">      
+          <label>Name</label>
+          <input class="w3-input" type="text" name="Name" required>
+        </div>
+        <div class="w3-section">      
+          <label> Your Email</label>
+          <input class="w3-input" type="text" name="Email" required>
+        </div>
+        <div class="w3-section">      
+            <label>Password</label>
+            <input class="w3-input" type="password" name="Password" required>
+          </div>
+        <div class="w3-section">      
+          <label>Message</label>
+          <input class="w3-input" type="text" name="Message" required>
+        </div>  
+        <input class="w3-check" type="checkbox" checked name="Like">
+        <label>I Like it!</label>
+        <button type="submit" class="w3-button w3-right w3-theme">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <% length=blogs.length %> 
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-4">
+          <h3>About Us</h3><!--
+          <p class="mb-4">
+            <img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid">
+          </p>-->
+
+          <p><a>WRITTER</a>, the initiative by Students' Opinion Society to explore career alternatives 
+          in the field of public policy, policy reasearch and other realted fields. </p>
+        </div>
+                  
+        <div class="col-md-6 ml-auto">
+          <div class="row">
+            <div class="col-md-7">
+              <h3>Latest Post</h3>
+              <div class="post-entry-sidebar">
+                <ul>
+                  <li>
+                    <a href="/blogs/<%= blogs[length-1]._id %>">
+                      <img src="<%= blogs[length-1].image %>" alt="Image placeholder" class="mr-4">
+                      <div class="text">
+                        <h4><%= blogs[length-1].title %></h4>
+                        <div class="post-meta">
+                          <span class="mr-2"><%= blogs[length-1].created.toDateString() %> </span> &bullet;
+                          <!--<span class="ml-2"><span class="fa fa-comments"></span> 3</span>-->
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/blogs/<%= blogs[length-2]._id %>">
+                      <img src="<%= blogs[length-2].image %>" alt="Image placeholder" class="mr-4">
+                      <div class="text">
+                        <h4><%= blogs[length-2].title %></h4>
+                        <div class="post-meta">
+                          <span class="mr-2"><%= blogs[length-2].created.toDateString() %> </span> &bullet;
+                          <!--<span class="ml-2"><span class="fa fa-comments"></span> 3</span>-->
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+            
+            <div class="col-md-4">
+
+              <div class="mb-5">
+                <h3>Quick Links</h3>
+                <ul class="list-unstyled">
+                  <li><a href="/">About Us</a></li>
+                  <li><a href="/contacts">Contact Us</a></li>
+                </ul>
+              </div>
+              
+              <div class="mb-5">
+                <h3>Social</h3>
+                <ul class="list-unstyled footer-social">
+                  <li><a href="https://fb.com/sos.iitk"><span class="fa fa-facebook"></span> Facebook</a></li>
+                  <li><a href="https://www.linkedin.com/company/30244102"><span class="fa fa-youtube-play"></span> Youtube</a></li>
+                  <li><a href="https://www.youtube.com/channel/UCL6N8QXTgLIdj2SzxYhHrag/featured"><span class="fa fa-linkedin"></span> Linkedin</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p class="small">
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        Copyright &copy; Students' Opinion Society
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  

@@ -1,4 +1,50 @@
-<%- include("../partials/header") %>
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>SOS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300, 400,700|Inconsolata:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="css/style.css">
+
+   
+    <nav class="navbar navbar-expand-md  navbar-light bg-light" >
+      <div class="container">
+        
+       
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav mx-auto" >
+            <li class="nav-item">
+              <a class="nav-link " href="/"> HOME</h3></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/blogs"><b>BLOGS</b></a>
+            </li>
+            <%	if(currentUser) { %>
+                     <li class="nav-item"><a class="nav-link" href="#"><%= currentUser.username %></h3></a></li>
+                     <li class="nav-item"><a class="nav-link" href="/logout">LOGOUT</h3></a></li>
+           <%  } else { %>
+                   <li class="nav-item"><a class="nav-link" href="/verify_email">SIGNUP</h4></a></li>
+                   <li class="nav-item"><a class="nav-link" href="/login">LOGIN</h4></a></li>
+            <% } %>
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+  </head>
+  <body>
 
 <div class="container formContainer">
 	<h1>
@@ -20,4 +66,15 @@
 	</form>
 </div>
 
+<div class="container">	
+	<% if(success && success.length > 0) { %>
+		<div class="alert alert-success" role="alert">
+			<%= success %>
+		</div>
+	<% } else if(error && error.length > 0) { %>
+		<div class="alert alert-danger" role="alert">
+			<%= error %>
+		</div>
+	<% } %>
+</div>
 <%- include("../partials/footer") %>

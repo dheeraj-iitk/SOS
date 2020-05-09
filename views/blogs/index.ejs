@@ -1,50 +1,276 @@
-<%- include("../partials/header") %>
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>SOS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<div class="jumbotron">
-	<div id="jumbotronContent">
-		<h1>
-			Students and opinions made for each other
-		</h1>
-		<p>
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-		</p>
-	</div>
-</div>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300, 400,700|Inconsolata:400,700" rel="stylesheet">
 
-<div class="container">
-	
-	<h1 id="titleHead">
-		<span id="title">Trending</span>
-		<% if (currentUser && (user.passcode == passVal)) { %>
-			<form id="createPostBtn" action="/blogs/new" method="GET">
-				<button class="btn btn-primary pull-right">
-					<i class="fas fa-plus"></i>
-					Create new post
-				</button>
-			</form>
-		<% } %>
-	</h1>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
 
-	<div class="row">
-		<% for(var i=0; i<blogs.length; i++) { %>	
-			<div class="clearfix col-md-4 float">
-				<div class="thumbnail">
-					<img src="<%= blogs[i].image %>">
-					<div class="caption-full">
-						<h1>
-							<%= blogs[i].title %>
-						</h1>
-						<p>
-							<%= blogs[i].content.substr(0, 100) %> ...
-							<a href="/blogs/<%= blogs[i]._id %>">Read more</a>
-						</p>
-						<%= blogs[i].created.toDateString() %>
-					</div>	
-						
-				</div>
-			</div>
-		<% } %>
-	</div>
-</div>
+    <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
 
-<%- include("../partials/footer") %>
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="css/style.css">
+
+   
+    <nav class="navbar navbar-expand-md  navbar-light bg-light" >
+      <div class="container">
+        
+       
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav mx-auto" >
+            <li class="nav-item">
+              <a class="nav-link " href="/"> HOME</h3></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/blogs"><b>BLOGS</b></a>
+            </li>
+            <%	if(currentUser) { %>
+                     <li class="nav-item"><a class="nav-link" href="#"><%= currentUser.username %></h3></a></li>
+                     <li class="nav-item"><a class="nav-link" href="/logout">LOGOUT</h3></a></li>
+           <%  } else { %>
+                   <li class="nav-item"><a class="nav-link" href="/verify_email">SIGNUP</h4></a></li>
+                   <li class="nav-item"><a class="nav-link" href="/login">LOGIN</h4></a></li>
+            <% } %>
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+    <div class="container">	
+      <% if(success && success.length > 0) { %>
+          <div class="alert alert-success" role="alert">
+              <%= success %>
+          </div>
+      <% } else if(error && error.length > 0) { %>
+          <div class="alert alert-danger" role="alert">
+              <%= error %>
+          </div>
+      <% } %>
+  </div>
+  </head>
+  <body>
+  
+    
+    <% length=blogs.length %> 
+    <div class="wrap">
+
+      <header role="banner">
+
+        <div class="container logo-wrap">
+          <div class="row pt-5">
+            <div class="col-12 text-center">
+              <a class="absolute-toggle d-block d-md-none" data-toggle="collapse" href="#navbarMenu" role="button" aria-expanded="false" aria-controls="navbarMenu"><span class="burger-lines"></span></a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- END header -->
+
+      <section class="site-section pt-5 pb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+
+              <div class="owl-carousel owl-theme home-slider">
+                <div>
+                  <a href="/blogs/<%= blogs[length-1]._id %>" class="a-block d-flex align-items-center height-lg" style="background-image: url('<%= blogs[length-1].image %>'); ">
+                    <div class="text half-to-full">
+                      <div class="post-meta">
+                        
+                        <span class="author mr-2"><img src="images/blog1_0.jpg" alt="Abhishek Singh"> Abhishek Singh</span>&bullet;
+                        <span class="mr-2"><%= blogs[length-1].created.toDateString() %> </span>
+                        <!---<span class="ml-2"><span class="fa fa-comments"></span> 3</span>-->
+                        
+                      </div>
+                      <h3><%= blogs[length-1].title %></h3>
+                      <p><%= blogs[length-1].content.substr(0,20) %> </p>
+                    </div>
+                  </a>
+                </div>
+                <div>
+                  <a href="/blogs/<%= blogs[length-2]._id %>" class="a-block d-flex align-items-center height-lg" style="background-image: url('<%= blogs[length-2].image %>'); ">
+                    <div class="text half-to-full">
+                      <div class="post-meta">
+                        
+                        <span class="author mr-2"><img src="images/blog1_0.jpg" alt="Abhishek Singh"> Abhishek Singh</span>&bullet;
+                        <span class="mr-2"><%= blogs[length-2].created.toDateString() %> </span>
+                        <!---<span class="ml-2"><span class="fa fa-comments"></span> 3</span>-->
+                        
+                      </div>
+                      <h3><%= blogs[length-2].title %></h3>
+                      <p><%= blogs[length-2].content.substr(0,20) %> </p>
+                    </div>
+                  </a>
+                </div>
+                <div>
+                  <a href="/blogs/<%= blogs[length-3]._id %>" class="a-block d-flex align-items-center height-lg" style="background-image: url('<%= blogs[length-3].image %>'); ">
+                    <div class="text half-to-full">
+                      <div class="post-meta">
+                        
+                        <span class="author mr-2"><img src="images/blog1_0.jpg" alt="Abhishek Singh"> Abhishek Singh</span>&bullet;
+                        <span class="mr-2"><%= blogs[length-3].created.toDateString() %> </span>
+                        <!---<span class="ml-2"><span class="fa fa-comments"></span> 3</span>-->
+                        
+                      </div>
+                      <h3><%= blogs[length-3].title %></h3>
+                      <p><%= blogs[length-3].content.substr(0,20) %> </p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+        </div>
+
+
+      </section>
+      <!-- END section -->
+      <h1 id="titleHead">
+        <% if (currentUser && (user.passcode == passVal)) { %>
+          <form id="createPostBtn" action="/blogs/new" method="GET">
+            <button class="btn btn-primary pull-right">
+              <i class="fas fa-plus"></i>
+              Create new post
+            </button>
+          </form>
+        <% } %>
+      </h1>
+      <section class="site-section py-sm">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h2 class="mb-4">Latest Posts</h2>
+            </div>
+          </div>
+          <div class="row blog-entries">
+            <div class="col-md-12 col-lg-12 main-content">
+              <div class="row">
+                <% for(var i=0; i<blogs.length; i++) { %>	
+                <div class="col-md-6">
+                  <a href="/blogs/<%= blogs[i]._id %>" class="blog-entry element-animate" data-animate-effect="fadeIn">
+                    <img src="<%= blogs[i].image %>"  alt="Image placeholder">
+                    <div class="blog-content-body">
+                      <div class="post-meta">
+                        <span class="author mr-2"><img src="images/blog1_0.jpg" alt="Abhishek Singh"> Abhishek Singh</span>&bullet;
+                        <span class="mr-2"><%= blogs[i].created.toDateString() %> </span> &bullet;
+                        <!--<span class="ml-2"><span class="fa fa-comments"></span> 3</span>-->
+                      </div>
+                      <h2><%= blogs[i].title %></h2>
+                    </div>
+                  </a>
+                </div>
+              <% } %>    
+
+            </div>
+
+            <!-- END main-content -->
+        
+      <footer class="site-footer">
+        <div class="container">
+          <div class="row mb-5">
+            <div class="col-md-4">
+              <h3>About Us</h3><!--
+              <p class="mb-4">
+                <img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid">
+              </p>-->
+
+              <p><a>WRITTER</a>, the initiative by Students' Opinion Society to explore career alternatives 
+              in the field of public policy, policy reasearch and other realted fields. </p>
+            </div>
+                      
+            <div class="col-md-6 ml-auto">
+              <div class="row">
+                <div class="col-md-7">
+                  <h3>Latest Post</h3>
+                  <div class="post-entry-sidebar">
+                    <ul>
+                      <li>
+                        <a href="/blogs/<%= blogs[length-1]._id %>">
+                          <img src="<%= blogs[length-1].image %>" alt="Image placeholder" class="mr-4">
+                          <div class="text">
+                            <h4><%= blogs[length-1].title %></h4>
+                            <div class="post-meta">
+                              <span class="mr-2"><%= blogs[length-1].created.toDateString() %> </span> &bullet;
+                              <!--<span class="ml-2"><span class="fa fa-comments"></span> 3</span>-->
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/blogs/<%= blogs[length-2]._id %>">
+                          <img src="<%= blogs[length-2].image %>" alt="Image placeholder" class="mr-4">
+                          <div class="text">
+                            <h4><%= blogs[length-2].title %></h4>
+                            <div class="post-meta">
+                              <span class="mr-2"><%= blogs[length-2].created.toDateString() %> </span> &bullet;
+                              <!--<span class="ml-2"><span class="fa fa-comments"></span> 3</span>-->
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-1"></div>
+                
+                <div class="col-md-4">
+
+                  <div class="mb-5">
+                    <h3>Quick Links</h3>
+                    <ul class="list-unstyled">
+                      <li><a href="/">About Us</a></li>
+                      <li><a href="/contacts">Contact Us</a></li>
+                    </ul>
+                  </div>
+                  
+                  <div class="mb-5">
+                    <h3>Social</h3>
+                    <ul class="list-unstyled footer-social">
+                      <li><a href="https://fb.com/sos.iitk"><span class="fa fa-facebook"></span> Facebook</a></li>
+                      <li><a href="https://www.linkedin.com/company/30244102"><span class="fa fa-youtube-play"></span> Youtube</a></li>
+                      <li><a href="https://www.youtube.com/channel/UCL6N8QXTgLIdj2SzxYhHrag/featured"><span class="fa fa-linkedin"></span> Linkedin</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <p class="small">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy; Students' Opinion Society
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- END footer -->
+     
+    </div>
+    
+    <!-- loader -->
+    <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.0.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+
+    
+    <script src="js/main.js"></script>
+  </body>
+</html>

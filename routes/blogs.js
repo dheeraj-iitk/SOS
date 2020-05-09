@@ -4,6 +4,9 @@ var express = require("express"),
 	User = require("../models/users"),
 	middleware = require("../middleware");
 
+	var nodemailer = require('nodemailer');
+
+
 // LANDING ROUTE
 router.get("/",function(req,res){
 	res.render("blogs/home");
@@ -38,6 +41,43 @@ router.get("/blogs", function(req, res){
 router.get("/blogs/new", middleware.isLoggedIn , function(req, res){
 	res.render("blogs/new");
 })
+router.get("/contacts",function(req,res){
+	Blog.find({},function(err,allblogs){
+		if(err){
+			console.log("Error in finding blogs in index");
+		}
+		else {
+			res.render("blogs/contacts", {blogs: allblogs});
+		}
+	})
+})
+router.post("/contacts",function(req,res){
+	var transporter = nodemailer.createTransport({
+		service: 'Gmail',
+		auth: {
+			user: req.body.Email,
+			pass: req.body.Password
+		}
+	});
+	transporter.sendMail({
+		from: req.body.Email,
+		  to: 'sosatiitk@gmail.com',
+		  subject : "Message",
+		  text : req.body.Message
+	},function(err,data){
+		if(!err) {
+			console.log("email.sent");
+					req.flash("success", "Your Email has been sent" )
+					res.redirect("/contacts");
+					//userEmail=req.body.email;
+		}
+		else {
+			console.log(err);
+			req.flash("error","Invalid credentials");
+			res.redirect("/contacts");
+		}             
+	});
+});
 // CREATE ROUTE
 router.post("/blogs", function(req, res){
 	Blog.create(req.body.blog, function(err, newBlog){
